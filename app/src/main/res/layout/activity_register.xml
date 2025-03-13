@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@color/navy_blue">
+
+    <EditText
+        android:id="@+id/etNewUsername"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Felhasználónév" />
+
+    <EditText
+        android:id="@+id/etNewPassword"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Jelszó"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/etConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Jelszó megerősítése"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Regisztráció" />
+
+    <Button
+        android:id="@+id/btnBackToLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vissza a bejelentkezéshez" />
+
+</LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/navy_blue"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/etCalories"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Kalóriamennyiség"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/etMealType"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Étkezés típusa (pl. Reggeli)"/>
+
+    <EditText
+    android:id="@+id/etDate"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:hint="Dátum"
+    android:inputType="none"
+    android:focusable="false"/>
+
+    <Button
+        android:id="@+id/btnDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:text="📅"/>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mentés"/>
+
+    <Button
+        android:id="@+id/btnHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Előzmények"/>
+
+    <Button
+        android:id="@+id/btnProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Saját adatok"/>
+
+</LinearLayout>
