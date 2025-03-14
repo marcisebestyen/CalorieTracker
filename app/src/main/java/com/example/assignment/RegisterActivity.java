@@ -22,7 +22,6 @@ public class RegisterActivity extends AppCompatActivity {
         EditText etNewPassword = findViewById(R.id.etNewPassword);
         EditText etConfirmPassword = findViewById(R.id.etConfirmPassword);
         Button btnRegister = findViewById(R.id.btnRegister);
-        Button btnBackToLogin = findViewById(R.id.btnBackToLogin);
 
         btnRegister.setOnClickListener(v -> {
             String username = etNewUsername.getText().toString();
@@ -52,11 +51,6 @@ public class RegisterActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Hiba történt a regisztráció során!", Toast.LENGTH_SHORT).show();
             }
-        });
-
-        btnBackToLogin.setOnClickListener(v -> {
-            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-            finish();
         });
     }
 }

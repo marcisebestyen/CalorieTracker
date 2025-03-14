@@ -24,10 +24,15 @@
             android:text="Nincs adat"/>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnDeleteHistory"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Minden adat törlése" />
-
+        android:orientation="vertical"
+        android:gravity="center" >
+        <Button
+            android:id="@+id/btnDeleteHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minden adat törlése" />
+    </LinearLayout>
 </LinearLayout>

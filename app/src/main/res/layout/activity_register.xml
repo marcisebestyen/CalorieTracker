@@ -29,14 +29,8 @@
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Regisztráció" />
-
-    <Button
-        android:id="@+id/btnBackToLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Vissza a bejelentkezéshez" />
 
 </LinearLayout>
