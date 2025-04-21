@@ -36,5 +36,30 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
+        
+        // Firebase login
+        loginButton.setOnClickListener(v -> loginUser());
+    }
+
+    // Firebase login
+    private void loginUser() {
+        String username = editTextUserName.getText().toString();
+        String password = editTextPassword.getText().toString();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            Toast.makeText(LoginActivity.this, "Please enter username and password.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(username, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(LoginActivity.this, "Login successful.", Toast.LENGTH_SHORT).show();
+                        startMainActivity();
+                        finish(); // Close the login activity.
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Login failed. Check your credentials.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

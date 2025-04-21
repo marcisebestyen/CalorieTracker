@@ -7,9 +7,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class RegisterActivity extends AppCompatActivity {
 
     DatabaseHelper db;
+    FirebaseAuth auth;
+    FirebaseFirestore fsDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +22,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         db = new DatabaseHelper(this);
+        auth = FirebaseAuth.getInstance();
+        fsDb = FirebaseFirestore.getInstance();
 
         EditText etNewUsername = findViewById(R.id.etNewUsername);
         EditText etNewPassword = findViewById(R.id.etNewPassword);
@@ -52,5 +59,45 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(this, "Hiba történt a regisztráció során!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Firebase register
+        registerButton.setOnClickListener(v -> registerUser());
+    }
+
+    // Firebase register
+    private void registerUser(){
+        String username = registerUsernameEditText.getText().toString();
+        String email = registerEmailEditText.getText().toString();
+        String password = registerPasswordEditText.getText().toString();
+
+        if (username.isEmpty()  email.isEmpty()  password.isEmpty()) {
+            Toast.makeText(RegisterActivity.this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        saveUserDataToFirestore(username, email);
+                        Toast.makeText(RegisterActivity.this, "Registration successful.", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Registration failed.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void saveUserDataToFirestore(String username, String email) {
+        if (mAuth.getCurrentUser() != null) {
+            String userId = mAuth.getCurrentUser().getUid();
+            Map<String, Object> user = new HashMap<>();
+            user.put("username", username);
+            user.put("email", email);
+
+            db.collection("users").document(userId)
+                    .set(user)
+                    .addOnSuccessListener(aVoid -> Toast.makeText(RegisterActivity.this, "User data saved.", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e -> Toast.makeText(RegisterActivity.this, "Failed to save user data.", Toast.LENGTH_SHORT).show());
+        }
     }
 }
